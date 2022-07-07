@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>!!!Weather is Wacky!!!</title>
+</head>
+<body>
+    <header class="jumbotron">
+        <h1 class="display-3">Wacky Weather</h1>
+        <p class="lead">Search by city for current conditions and a five-day forecast!</p>
+        <p id="currentDay" class="lead"></p>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="search-bar" placeholder="Search by city..." aria-label="Search by city..." aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="displayCity()" id="button-addon2">Search</button>
+            </div>
+          </div>
+    </header>
+    <div class="today">
+        <div class="card text-white bg-success mb-3 m-5" style="max-width: 100%;">
+            <div class="card-header"><h1 id="city-name"></h1></div>
+            <div class="card-body d-flex">
+                <img style="max-width: 50%;" src="" alt="weather icon">
+                <div style="max-width: 50%;">
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="five-day-block d-flex">
+        <div class="card text-white bg-success mb-3 m-5" style="width: 15%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <img src="" alt="weather icon">
+                <div>
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-success mb-3 m-5" style="width: 15%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <img src="" alt="weather icon">
+                <div>
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-success mb-3 m-5" style="width: 15%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <img src="" alt="weather icon">
+                <div>
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-success mb-3 m-5" style="width: 15%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <img src="" alt="weather icon">
+                <div>
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white bg-success mb-3 m-5" style="width: 15%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <img src="" alt="weather icon">
+                <div>
+                    <p class="card-text temperature">Temperature (C):</p>
+                    <p class="card-text humidity">Humidity:</p>
+                    <p class="card-text uv">UV Index:</p>
+                    <p class="card-text wind">Wind Speed:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
