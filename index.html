@@ -16,7 +16,9 @@
         <p class="lead">Search by city for current conditions and a five-day forecast!</p>
         <p id="currentDay" class="lead"></p>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="search-bar" placeholder="Search by city..." aria-label="Search by city..." aria-describedby="button-addon2">
+            <input type="input" list="search-history" class="form-control" id="search-bar" placeholder="Search by city..." aria-label="Search by city..." aria-describedby="button-addon2">
+            <datalist id="search-history">
+            </datalist>      
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" onclick="displayCity()" id="button-addon2">Search</button>
             </div>
@@ -38,7 +40,7 @@
     </div>
     <div class="five-day-block d-flex">
         <div  class="card text-white bg-success mb-3 m-5" style="min-width: 15%;">
-            <div class="card-header">Header</div>
+            <div class="card-header"><h2 id="one-date"></h2></div>
             <div class="card-body">
                 <img id = "one-img" src="./images/01d.png" alt="weather icon">
                 <div>
@@ -50,7 +52,7 @@
             </div>
         </div>
         <div class="card text-white bg-success mb-3 m-5" style="min-width: 15%;">
-            <div class="card-header">Header</div>
+            <div class="card-header"><h2 id="two-date"></h2></div>
             <div class="card-body">
                 <img id = "two-img" src="./images/01d.png" alt="weather icon">
                 <div>
@@ -62,7 +64,7 @@
             </div>
         </div>
         <div class="card text-white bg-success mb-3 m-5" style="min-width: 15%;">
-            <div class="card-header">Header</div>
+            <div class="card-header"><h2 id="three-date"></h2></div>
             <div class="card-body">
                 <img id = "three-img" src="./images/01d.png" alt="weather icon">
                 <div>
@@ -74,7 +76,7 @@
             </div>
         </div>
         <div class="card text-white bg-success mb-3 m-5" style="min-width: 15%;">
-            <div class="card-header">Header</div>
+            <div class="card-header"><h2 id="four-date"></h2></div>
             <div class="card-body">
                 <img id = "four-img" src="./images/01d.png" alt="weather icon">
                 <div>
@@ -86,7 +88,7 @@
             </div>
         </div>
         <div class="card text-white bg-success mb-3 m-5" style="min-width: 15%;">
-            <div class="card-header">Header</div>
+            <div class="card-header"><h2 id="five-date"></h2></div>
             <div class="card-body">
                 <img id = "five-img" src="./images/01d.png" alt="weather icon">
                 <div>

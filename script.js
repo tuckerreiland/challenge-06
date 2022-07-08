@@ -23,10 +23,14 @@ var todayHumidity = document.querySelector("#today-humidity")
 var todayUV = document.querySelector("#today-uv")
 var todayWind = document.querySelector("#today-wind")
 var todayImg = document.querySelector("#today-img")
+var searchHistoryDropDown = document.querySelector("#search-history")
 
 
 //arrays
 var todayWeather = []
+var todayWeatherUV = "";
+var cityLat = ""
+var cityLong = ""
 var fiveDayForecastArray = []
 var todayPlusOneWeather = []
 var todayPlusTwoWeather = []
@@ -35,17 +39,14 @@ var todayPlusFourWeather = []
 var todayPlusFiveWeather = []
 
 
-//fetch weather data
+
 
 //search function
-function searchInputStore(){
-    window.localStorage.setItem("#search-bar", searchInput.value);
-   }
 function displayCity(){
-searchInputStore();
-    cityName = window.localStorage.getItem("#search-bar");
+    cityName = searchInput.value;
     displayCityName.textContent = cityName
     searchHistory.push(cityName)
+    displayDropDown();
     var cityFormatted = cityName.replace(' ', '+');
     var openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${cityFormatted}&appid=${keyAPI}`
     fetch(openWeatherAPI)
@@ -56,11 +57,28 @@ searchInputStore();
         todayWeather=data;
         return todayWeather;
     })
+    // Couldn't get the open call API to work, it kept giving me a 401 message that I couldn't resolve before turning it in.
+    // .then( function(){
+    //     cityLat = Math.round(100*(todayWeather.coord.lat))/100;
+    //     cityLong = Math.round(100*(todayWeather.coord.lon))/100;
+    // })
+    // .then( function(){
+    // var openWeatherOpenCallAPI = `https://api.openweathermap.org/data/2.5/opencall?lat=${cityLat}&${cityLong}&appid=ee30fdde8135a4dc22755b2aaa0ad304`
+    // fetch(openWeatherOpenCallAPI)
+    // .then(function(response){
+    //     return response.json();   
+    // })
+    // .then( function(data){
+    //     todayWeatherUV = data.current.uvi
+    //     console.log(data);
+    //     return todayWeatherUV;
+    // })
+    // })
     .then( function(){
         console.log(todayWeather);
         todayTemp.textContent = `Temperature (K): ${todayWeather.main.temp}`
         todayHumidity.textContent = `Humidity: ${todayWeather.main.humidity}`
-        // todayUV.textContent = `UV: ${todayWeather.current.uvi}`
+        // todayUV.textContent = `UV: ${todayWeatherUV.current.uvi}`
         todayWind.textContent = `Wind Speed: ${todayWeather.wind.speed}`
         todayImg.src = `./images/${todayWeather.weather[0].icon}.png`
     })
@@ -70,9 +88,8 @@ searchInputStore();
 }
 
 function fiveDayForecast(){
-    cityName = window.localStorage.getItem("#search-bar");
+    cityName = searchInput.value;
     displayCityName.textContent = cityName
-    searchHistory.push(cityName)
     var cityFormatted = cityName.replace(' ', '+');
     var openWeatherForecastAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${cityFormatted}&appid=${keyAPI}`;
     fetch(openWeatherForecastAPI)
@@ -96,11 +113,22 @@ function fiveDayForecast(){
         dayThree()
         dayFour()
         dayFive();
+        cityName = undefined;
 })
     }
 
+displayDropDown = function(){
+    for (let index = 0; index < searchHistory.length; index++) {
+        var optionHistory = document.createElement("option")
+        optionHistory.innerHTML = searchHistory[index]
+        searchHistoryDropDown.appendChild(optionHistory);
+    }
+    
+}
+
 
 dayOne = function(){
+    document.querySelector("#one-date").textContent = moment.unix(todayPlusOneWeather.dt).format('dddd')
     document.querySelector("#one-temp").textContent = `Temperature (K): ${todayPlusOneWeather.main.temp}`
     document.querySelector("#one-humidity").textContent = `Humidity: : ${todayPlusOneWeather.main.humidity}`
     // document.querySelector("#one-temp").textContent = `UV Index: ${todayPlusOneWeather.main.temp}`
@@ -109,6 +137,7 @@ dayOne = function(){
 }
 
 dayTwo = function(){
+    document.querySelector("#two-date").textContent = moment.unix(todayPlusTwoWeather.dt).format('dddd')
     document.querySelector("#two-temp").textContent = `Temperature (K): ${todayPlusTwoWeather.main.temp}`
     document.querySelector("#two-humidity").textContent = `Humidity: : ${todayPlusTwoWeather.main.humidity}`
     // document.querySelector("#one-temp").textContent = `UV Index: ${todayPlusOneWeather.main.temp}`
@@ -117,6 +146,7 @@ dayTwo = function(){
 }
 
 dayThree = function(){
+    document.querySelector("#three-date").textContent = moment.unix(todayPlusThreeWeather.dt).format('dddd')
     document.querySelector("#three-temp").textContent = `Temperature (K): ${todayPlusThreeWeather.main.temp}`
     document.querySelector("#three-humidity").textContent = `Humidity: : ${todayPlusThreeWeather.main.humidity}`
     // document.querySelector("#one-temp").textContent = `UV Index: ${todayPlusOneWeather.main.temp}`
@@ -125,6 +155,7 @@ dayThree = function(){
 }
 
 dayFour = function(){
+    document.querySelector("#four-date").textContent = moment.unix(todayPlusFourWeather.dt).format('dddd')
     document.querySelector("#four-temp").textContent = `Temperature (K): ${todayPlusFourWeather.main.temp}`
     document.querySelector("#four-humidity").textContent = `Humidity: : ${todayPlusFourWeather.main.humidity}`
     // document.querySelector("#one-temp").textContent = `UV Index: ${todayPlusOneWeather.main.temp}`
@@ -133,23 +164,10 @@ dayFour = function(){
 }
 
 dayFive = function(){
+    document.querySelector("#five-date").textContent = moment.unix(todayPlusFiveWeather.dt).format('dddd')
     document.querySelector("#five-temp").textContent = `Temperature (K): ${todayPlusFiveWeather.main.temp}`
     document.querySelector("#five-humidity").textContent = `Humidity: : ${todayPlusFiveWeather.main.humidity}`
     // document.querySelector("#one-temp").textContent = `UV Index: ${todayPlusOneWeather.main.temp}`
     document.querySelector("#five-wind").textContent = `Wind Speed: ${todayPlusFiveWeather.wind.speed}`
     document.querySelector("#five-img").src = `./images/${todayPlusFiveWeather.weather[0].icon}.png`
 }
-
-    
-//TODO: Dropdown of search history from array
-
-//populate Today forecast
-
-//populate next five days
-    //display date
-
-
-//uv index function
-    //if uv-index moderate => change bg to bg-warning
-    //if uv-index severe => change bg to bg-danger
-    //else bg-success
